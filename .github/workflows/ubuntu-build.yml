@@ -70,9 +70,13 @@ jobs:
         name: Run tests
         run: cd build && xvfb-run ctest -j --output-on-failure
 
+      # Debug: Check if build.zip exists
+      - name: List files in current directory
+        run: ls -l
+        
       # Zip build directory
       - name: Zip build directory
-        run: zip -r build.zip build/
+        run: zip -r build.zip /Users/runner/work/visualboyadvance-m/visualboyadvance-m/build/
 
       # Upload build artifacts
       - name: Upload build artifacts
@@ -89,3 +93,4 @@ jobs:
         with:
           name: build-artifact
           path: ./build.zip
+
