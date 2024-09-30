@@ -69,21 +69,23 @@ jobs:
       - if: matrix.build_options == 'default'
         name: Run tests
         run: cd build && xvfb-run ctest -j --output-on-failure
-      
+
+      # Zip build directory
       - name: Zip build directory
         run: zip -r build.zip build/
 
+      # Upload build artifacts
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
-        path: build.zip
+          path: build.zip
   download:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - name: Download build artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: build-artifact
-        path: ./downloaded-artifacts
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+          path: ./downloaded-artifacts
