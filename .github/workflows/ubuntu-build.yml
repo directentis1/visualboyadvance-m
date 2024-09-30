@@ -64,11 +64,11 @@ jobs:
 
       # Debug: Check if build.zip exists
       - name: List files in current directory
-        run: ls -l
+        run: pwd && ls -l
         
       # Zip build directory
       - name: Zip build directory
-        run: zip -r build.zip /Users/runner/work/visualboyadvance-m/visualboyadvance-m/build/
+        run: zip -r build.zip build/
 
       # Upload build artifacts
       - name: Upload build artifacts
