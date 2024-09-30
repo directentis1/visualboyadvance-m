@@ -6,8 +6,8 @@ jobs:
     strategy:
       matrix:
         build_compiler: [gcc, clang]
-        build_type: [release, debug]
-        build_options: [default, link_off, translations_only, libretro]
+        build_type: [release]
+        build_options: [default, link_off, translations_only]
         include:
           - cmake_compiler: '-DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++'
             build_compiler: gcc
@@ -15,18 +15,10 @@ jobs:
             build_compiler: clang
           - cmake_build: '-DCMAKE_BUILD_TYPE=Release'
             build_type: release
-          - cmake_build: '-DCMAKE_BUILD_TYPE=Debug'
-            build_type: debug
           - cmake_options: '-DENABLE_LINK=OFF'
             build_options: link_off
           - cmake_options: '-DTRANSLATIONS_ONLY=ON'
             build_options: translations_only
-          - libretro_build: 'DEBUG=0'
-            build_type: release
-            build_options: libretro
-          - libretro_build: 'DEBUG=1'
-            build_type: debug
-            build_options: libretro
         exclude:
           # Exclude debug/translations_only build
           - build_type: debug
